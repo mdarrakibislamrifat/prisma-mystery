@@ -10,11 +10,23 @@ const main = async () => {
   //   });
   //   console.log(deleteData);
 
-  const deleteMany = await prisma.post.deleteMany({
-    where: {
-      published: false,
+  //   const deleteMany = await prisma.post.deleteMany({
+  //     where: {
+  //       published: false,
+  //     },
+  //   });
+
+  const upsertDb = await prisma.post.upsert({
+    where: { id: 10 },
+    update: {
+      title: "Updated upserted title",
+    },
+    create: {
+      title: "Upserted title",
+      content: "Upserted content",
     },
   });
+  console.log(upsertDb);
 };
 
 main();
