@@ -8,7 +8,7 @@ const main = async () => {
 
   const getOneFromDB = await prisma.post.findFirst({
     where: {
-      id: 8,
+      id: 2,
     },
   });
 
@@ -20,11 +20,11 @@ const main = async () => {
 
   const findUniqueFromDB = await prisma.post.findUniqueOrThrow({
     where: {
-      id: 8,
+      id: 2,
     },
   });
 
-  console.log(findUniqueFromDB);
+  console.log(getAllFromDB);
 };
 
 main();
