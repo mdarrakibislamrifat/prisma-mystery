@@ -27,5 +27,4 @@ const main = async () => {
   });
   console.log(findUniqueFromDB);
 };
-
 main();
