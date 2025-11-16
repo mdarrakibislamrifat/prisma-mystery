@@ -1,72 +1,55 @@
-import { PrismaClient } from "./generated/prisma/client.js";
+import { PrismaClient, UserRole } from "./generated/prisma/client.js";
 import "dotenv/config";
 const prisma = new PrismaClient();
 
 const main = async () => {
-  //   const result = await prisma.post.create({
-  //     data: {
-  //       title: "My first post",
-  //       content: "Hello world 3",
-  //       authorName: "Rifat",
-  //     },
-  //   });
+  // const createUser = await prisma.user.create({
+  //   data: {
+  //     username: "user2",
+  //     email: "user2@gmail.com",
+  //     role: UserRole.user,
+  //   },
+  // });
 
-  const createMany = await prisma.post.createMany({
-    data: [
-      {
-        title: "My first title",
-        content: "Hello world",
-        authorName: "Rifat",
+  // const createProfile = await prisma.profile.create({
+  //   data: {
+  //     bio: "This is user1 bio",
+  //     userId: 1,
+  //   },
+  // });
+
+  // const createCategory = await prisma.category.createMany({
+  //   data: [
+  //     { name: "Web Dev" },
+  //     { name: "Js" },
+  //     { name: "programming" },
+  //     {
+  //       name: "Software Development",
+  //     },
+  //   ],
+  // });
+
+  const createPost = await prisma.post.create({
+    data: {
+      title: "This is post title",
+      content: "This is post content",
+      authorId: 1,
+      postCategory: {
+        create: {
+          category: {
+            connect: {
+              id: 1,
+            },
+          },
+        },
       },
-      {
-        title: "A day in the life",
-        content: "Today I went for a walk in the park.",
-        authorName: "Alice",
-      },
-      {
-        title: "Learning TypeScript",
-        content: "TypeScript makes JavaScript safer and more predictable.",
-        authorName: "Bob",
-      },
-      {
-        title: "My travel plans",
-        content: "I’m planning a trip to Japan next spring.",
-        authorName: "Charlie",
-      },
-      {
-        title: "Healthy recipes",
-        content: "I tried a new smoothie recipe today and it was delicious.",
-        authorName: "Diana",
-      },
-      {
-        title: "Coding tips",
-        content: "Always write small functions to keep your code clean.",
-        authorName: "Ethan",
-      },
-      {
-        title: "Favorite books",
-        content: "I just finished reading 'The Great Gatsby'.",
-        authorName: "Fiona",
-      },
-      {
-        title: "Morning routine",
-        content: "Meditation and a cup of coffee start my day right.",
-        authorName: "George",
-      },
-      {
-        title: "Tech news",
-        content: "New AI tools are changing the way we code.",
-        authorName: "Hannah",
-      },
-      {
-        title: "Weekend vibes",
-        content: "Relaxing at home with some good music and tea.",
-        authorName: "Ibrahim",
-      },
-    ],
+    },
+    include: {
+      postCategory: true,
+    },
   });
 
-  console.log(createMany);
+  console.log("Created User:", createPost);
 };
 
 main();
