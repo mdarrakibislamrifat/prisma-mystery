@@ -25,6 +25,11 @@ const paginationSorting = async () => {
     orderBy: {
       title: "asc",
     },
+    skip: 2,
+    take: 3,
+    where: {
+      published: true,
+    },
   });
   console.log(sortingdata);
 };
