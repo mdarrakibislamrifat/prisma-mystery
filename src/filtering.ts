@@ -17,21 +17,42 @@ const filtering = async () => {
   //     },
   //   });
 
-  const orFiltering = await prisma.post.findMany({
+  //   const orFiltering = await prisma.post.findMany({
+  //     where: {
+  //       OR: [
+  //         {
+  //           title: {
+  //             contains: "title",
+  //           },
+  //         },
+  //         {
+  //           published: true,
+  //         },
+  //       ],
+  //     },
+  //   });
+
+  //   const notFiletering = await prisma.post.findMany({
+  //     where: {
+  //       NOT: [
+  //         {
+  //           title: {
+  //             contains: "title 1",
+  //           },
+  //         },
+  //       ],
+  //     },
+  //   });
+
+  const startWith = await prisma.user.findMany({
     where: {
-      OR: [
-        {
-          title: {
-            contains: "title",
-          },
-        },
-        {
-          published: true,
-        },
-      ],
+      email: {
+        startsWith: "user1",
+      },
     },
   });
-  console.log(orFiltering);
+
+  console.log(startWith);
 };
 
 filtering();
