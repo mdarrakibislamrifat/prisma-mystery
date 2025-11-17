@@ -44,15 +44,38 @@ const filtering = async () => {
   //     },
   //   });
 
-  const startWith = await prisma.user.findMany({
+  //   const startWith = await prisma.user.findMany({
+  //     where: {
+  //       email: {
+  //         startsWith: "user1",
+  //       },
+  //     },
+  //   });
+
+  //   const userNameArray = ["user1", "user2"];
+
+  //   const usernameByArray = await prisma.user.findMany({
+  //     where: {
+  //       username: {
+  //         in: userNameArray,
+  //       },
+  //     },
+  //   });
+
+  const inDepthData = await prisma.user.findUnique({
     where: {
-      email: {
-        startsWith: "user1",
+      id: 2,
+    },
+    include: {
+      post: {
+        include: {
+          postCategory: true,
+        },
       },
     },
   });
 
-  console.log(startWith);
+  console.dir(inDepthData, { depth: Infinity });
 };
 
 filtering();
