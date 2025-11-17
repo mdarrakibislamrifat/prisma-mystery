@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/groupby.ts"
+    "dev": "tsx watch src/batch.ts"
   },
   "keywords": [],
   "author": "",
