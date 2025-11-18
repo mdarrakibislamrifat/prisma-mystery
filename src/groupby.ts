@@ -1,4 +1,4 @@
-import { PrismaClient, UserRole } from "./generated/prisma/client.js";
+import { PrismaClient } from "./generated/prisma/client.js";
 import "dotenv/config";
 const prisma = new PrismaClient();
 
